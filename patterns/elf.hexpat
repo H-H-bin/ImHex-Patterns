@@ -255,7 +255,12 @@ namespace section {
 
 }
 
+struct Elf {
+  elf::Header header;
+  program::Header program_headers[header.program_header_entry_count];
+  section::Header section_headers[header.section_header_entry_count];
+};
 
-elf::Header header @ 0x00;
-program::Header program_headers[header.program_header_entry_count] @ header.program_header_offset;
-section::Header section_headers[header.section_header_entry_count] @ header.section_header_offset;
+Elf elf_file @ 0x00;
+
+
